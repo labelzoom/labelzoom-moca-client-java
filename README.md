@@ -1,7 +1,7 @@
 ![LabelZoom Logo](docs/LabelZoom_Logo_f_400px.png)
 
 # labelzoom-moca-client-java
-MOCA client for Java, sponsored by LabelZoom.
+MOCA client for Java, sponsored by [LabelZoom](https://www.labelzoom.net).
 
 ## How To Use
 See [tests](src/test) for examples.
