@@ -26,9 +26,9 @@ public class MocaResponse
 
     public static MocaResponse fromXml(final String responseXml) throws MocaException
     {
-        int statusCode = 0;
-        String message;
-        ResultSet results;
+        final int statusCode;
+        final String message;
+        final ResultSet results;
         try
         {
             final Document doc = parseXmlString(responseXml);

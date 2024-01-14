@@ -118,6 +118,6 @@ class MocaResultSetMetaData extends AResultSetMetaData
         {
             throw new IndexOutOfBoundsException();
         }
-        return colNum.intValue();
+        return colNum;
     }
 }

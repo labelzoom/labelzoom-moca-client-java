@@ -30,7 +30,7 @@ public class LegacyMocaConnection extends MocaConnection
                 Thread.sleep(100L);
             }
 
-            byte[] data = new byte[socket.getInputStream().available()];
+            final byte[] data = new byte[socket.getInputStream().available()];
             final int bytes = socket.getInputStream().read(data, 0, data.length);
             final String responseData = new String(data, 0 , bytes, "ASCII");
             return MocaResponse.fromLegacy(responseData);

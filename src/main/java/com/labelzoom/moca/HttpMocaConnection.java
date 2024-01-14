@@ -28,7 +28,7 @@ public class HttpMocaConnection extends MocaConnection
             con.setRequestMethod("POST");
             con.setDoOutput(true);
             con.setRequestProperty("Content-Type", "application/moca-xml");
-            byte[] bytes = command.getBytes(StandardCharsets.UTF_8);
+            final byte[] bytes = command.getBytes(StandardCharsets.UTF_8);
             con.setFixedLengthStreamingMode(bytes.length);
             try (final OutputStream os = con.getOutputStream())
             {
@@ -36,7 +36,7 @@ public class HttpMocaConnection extends MocaConnection
             }
             con.setConnectTimeout(TIMEOUT);
             con.setReadTimeout(TIMEOUT);
-            int status = con.getResponseCode();
+            final int status = con.getResponseCode();
             try
             {
                 if (status != 200)
