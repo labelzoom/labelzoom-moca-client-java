@@ -1,6 +1,7 @@
 package com.labelzoom.moca;
 
 import com.labelzoom.moca.exceptions.MocaException;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -16,9 +17,10 @@ import java.util.stream.Collectors;
 
 public class HttpMocaConnectionTest
 {
-    private static final String url = "http://BYWMS202011QA.robfaust.com:4600/service";
-    private static final String userId = "RFAUST";
-    private static final String password = "RFaust123";
+    private final Dotenv dotenv = Dotenv.load();
+    private final String url = dotenv.get("MOCA_URL");
+    private final String userId = dotenv.get("MOCA_USER");
+    private final String password = dotenv.get("MOCA_PASS");
 
     @Test
     public void testHttpMocaConnection() throws MocaException

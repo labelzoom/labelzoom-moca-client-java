@@ -1,13 +1,15 @@
 package com.labelzoom.moca;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class MocaTester
 {
-    private static final String url = "http://BYWMS202011QA.robfaust.com:4600/service";
-    private static final String userId = "RFAUST";
-    private static final String password = "RFaust123";
+    private final Dotenv dotenv = Dotenv.load();
+    private final String url = dotenv.get("MOCA_URL");
+    private final String userId = dotenv.get("MOCA_USER");
+    private final String password = dotenv.get("MOCA_PASS");
     protected MocaConnection conn;
 
     @BeforeEach

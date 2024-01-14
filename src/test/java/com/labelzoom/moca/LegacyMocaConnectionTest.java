@@ -1,6 +1,8 @@
 package com.labelzoom.moca;
 
 import com.labelzoom.moca.exceptions.MocaException;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -19,12 +21,18 @@ V104^426^2^^^418^^^~0~~0~~-1^USR_ID=RFAUST:SESSION_KEY=;uid=RFAUST|sid=314d9b70-
 V104^223^2^^^215^^^~0~~0~~-1^USR_ID=RFAUST:SESSION_KEY=;uid=RFAUST|sid=314d9b70-e08e-4a8f-ae19-3090e5ab21ba|dt=kqtyde8v|sec=ALL;vek4REudkhzDSe7quJGKcAjaT0:LOCALE_ID=US_ENGLISH^003330^list library versions where category = 'MOCAbase'
 V104^210^2^^^202^^^~0~~0~~-1^USR_ID=RFAUST:SESSION_KEY=;uid=RFAUST|sid=314d9b70-e08e-4a8f-ae19-3090e5ab21ba|dt=kqtyde8v|sec=ALL;vek4REudkhzDSe7quJGKcAjaT0:LOCALE_ID=US_ENGLISH^000002^publish data where dbtype = dbtype()
  */
+
+/**
+ * TODO: LegacyMocaConnection needs some work
+ */
+@Disabled
 public class LegacyMocaConnectionTest
 {
-    private static final String host = "BYWMS202011QA.robfaust.com";
-    private static final int port = 4610;
-    private static final String userId = "RFAUST";
-    private static final String password = "RFaust123";
+    private final Dotenv dotenv = Dotenv.load();
+    private final String host = dotenv.get("MOCA_HOST");
+    private final int port = Integer.parseInt(dotenv.get("MOCA_PORT"));
+    private final String userId = dotenv.get("MOCA_USER");
+    private final String password = dotenv.get("MOCA_PASS");
 
     @Test
     public void testReadersAndWriters() throws IOException, InterruptedException

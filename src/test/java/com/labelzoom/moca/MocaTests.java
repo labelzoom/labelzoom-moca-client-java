@@ -16,7 +16,7 @@ public class MocaTests extends MocaTester
         try
         {
             conn.execute("publish data a = 1");
-            assertTrue(false);
+            fail("Expected exception but none was thrown");
         }
         catch (final MocaException ex)
         {
@@ -31,7 +31,7 @@ public class MocaTests extends MocaTester
         try
         {
             conn.execute("this command doesnt exist");
-            assertTrue(false);
+            fail("Expected exception but none was thrown");
         }
         catch (final MocaException ex)
         {
@@ -46,7 +46,7 @@ public class MocaTests extends MocaTester
         try
         {
             conn.execute("[select polcod, polvar, polval from poldat where 1 = 2]");
-            assertTrue(false);
+            fail("Expected exception but none was thrown");
         }
         catch (final MocaException ex)
         {
@@ -66,6 +66,7 @@ public class MocaTests extends MocaTester
         try
         {
             conn.execute("[select qw9io0ejoower from poldat where 1 = 2]");
+            fail("Expected exception but none was thrown");
         }
         catch (final MocaException ex)
         {
