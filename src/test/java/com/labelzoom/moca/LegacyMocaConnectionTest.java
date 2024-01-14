@@ -103,9 +103,9 @@ public class LegacyMocaConnectionTest
     @Test
     public void testLegacyMocaConnection() throws MocaException
     {
-        try (final MocaConnection conn = new LegacyMocaConnection(host, port, userId, password))
+        try (final MocaConnection conn = new LegacyMocaConnection(host, port, userId, password);
+             final ResultSet res = conn.execute("create policy where polcod = 'LEGACY-MOCA-CLIENT' and polvar = 'LEGACY-MOCA-CLIENT' and polval = 'LEGACY-MOCA-CLIENT' and rtstr1 = 'success'"))
         {
-            final ResultSet res = conn.execute("create policy where polcod = 'LEGACY-MOCA-CLIENT' and polvar = 'LEGACY-MOCA-CLIENT' and polval = 'LEGACY-MOCA-CLIENT' and rtstr1 = 'success'");
             res.next();
             System.out.println("Message: " + res.getString("message"));
         }

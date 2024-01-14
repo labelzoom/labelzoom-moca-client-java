@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 class MocaResultSet extends AResultSet
 {
+    private boolean isClosed = false;
     private final MocaResultSetMetaData metadata;
     private final ArrayList<ArrayList<String>> data;
 
@@ -53,6 +54,7 @@ class MocaResultSet extends AResultSet
     @Override
     public boolean next()
     {
+        if (isClosed) throw new IllegalStateException("ResultSet is closed");
         rowNum++; // TODO: Do we want to keep incrementing rowNum even after developer has passed end of result set?
         if (rowNum > data.size() - 1)
         {
@@ -64,6 +66,7 @@ class MocaResultSet extends AResultSet
     @Override
     public boolean previous()
     {
+        if (isClosed) throw new IllegalStateException("ResultSet is closed");
         if (rowNum <= 0)
         {
             return false;
@@ -133,4 +136,7 @@ class MocaResultSet extends AResultSet
     {
         return rowNum == data.size() - 1;
     }
+
+    @Override
+    public void close() { isClosed = true; }
 }

@@ -27,9 +27,9 @@ public class HttpMocaConnectionTest
     @Test
     public void testHttpMocaConnection() throws MocaException, IOException, SQLException
     {
-        try (final MocaConnection conn = new HttpMocaConnection(url, userId, password))
+        try (final MocaConnection conn = new HttpMocaConnection(url, userId, password);
+             final ResultSet res = conn.execute("publish data where message = 'My name is Rob'"))
         {
-            final ResultSet res = conn.execute("publish data where message = 'My name is Rob'");
             res.next();
             assertEquals("My name is Rob", res.getString("message"));
         }
@@ -38,9 +38,9 @@ public class HttpMocaConnectionTest
     @Test
     public void testMultipleRows() throws MocaException, IOException, SQLException
     {
-        try (final MocaConnection conn = new HttpMocaConnection(url, userId, password))
+        try (final MocaConnection conn = new HttpMocaConnection(url, userId, password);
+             final ResultSet res = conn.execute("publish data where a = 1 and b = 2 & publish data where a = 3 and b = 4"))
         {
-            final ResultSet res = conn.execute("publish data where a = 1 and b = 2 & publish data where a = 3 and b = 4");
             while (res.next())
             {
                 System.out.printf("a = %d\tb = %d%n", res.getInt("a"), res.getInt("b"));
