@@ -28,7 +28,7 @@ V104^210^2^^^202^^^~0~~0~~-1^USR_ID=RFAUST:SESSION_KEY=;uid=RFAUST|sid=314d9b70-
 @Disabled
 public class LegacyMocaConnectionTest
 {
-    private final Dotenv dotenv = Dotenv.load();
+    private final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
     private final String host = dotenv.get("MOCA_HOST");
     private final int port = Integer.parseInt(dotenv.get("MOCA_PORT"));
     private final String userId = dotenv.get("MOCA_USER");

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 public abstract class MocaTester
 {
-    private final Dotenv dotenv = Dotenv.load();
+    private final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
     private final String url = dotenv.get("MOCA_URL");
     private final String userId = dotenv.get("MOCA_USER");
     private final String password = dotenv.get("MOCA_PASS");
