@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class HttpMocaConnectionTest
 {
     private final Dotenv dotenv = Dotenv.load();
@@ -23,34 +25,26 @@ public class HttpMocaConnectionTest
     private final String password = dotenv.get("MOCA_PASS");
 
     @Test
-    public void testHttpMocaConnection() throws MocaException
+    public void testHttpMocaConnection() throws MocaException, IOException, SQLException
     {
         try (final MocaConnection conn = new HttpMocaConnection(url, userId, password))
         {
             final ResultSet res = conn.execute("publish data where message = 'My name is Rob'");
             res.next();
-            System.out.println("Message: " + res.getString("message"));
-        }
-        catch (final SQLException | IOException e)
-        {
-            e.printStackTrace();
+            assertEquals("My name is Rob", res.getString("message"));
         }
     }
 
     @Test
-    public void testMultipleRows() throws MocaException
+    public void testMultipleRows() throws MocaException, IOException, SQLException
     {
         try (final MocaConnection conn = new HttpMocaConnection(url, userId, password))
         {
             final ResultSet res = conn.execute("publish data where a = 1 and b = 2 & publish data where a = 3 and b = 4");
             while (res.next())
             {
-                System.out.println(String.format("a = %d\tb = %d", res.getInt("a"), res.getInt("b")));
+                System.out.printf("a = %d\tb = %d%n", res.getInt("a"), res.getInt("b"));
             }
-        }
-        catch (final SQLException | IOException e)
-        {
-            e.printStackTrace();
         }
     }
 
@@ -64,7 +58,7 @@ public class HttpMocaConnectionTest
         con.setRequestMethod("POST");
         con.setDoOutput(true);
         con.setRequestProperty("Content-Type", "application/moca-xml");
-        byte[] bytes = command.getBytes(StandardCharsets.UTF_8);
+        final byte[] bytes = command.getBytes(StandardCharsets.UTF_8);
         con.setFixedLengthStreamingMode(bytes.length);
         try (final OutputStream os = con.getOutputStream())
         {
@@ -72,7 +66,7 @@ public class HttpMocaConnectionTest
         }
         con.setConnectTimeout(TIMEOUT);
         con.setReadTimeout(TIMEOUT);
-        int status = con.getResponseCode();
+        final int status = con.getResponseCode();
         try
         {
             if (status != 200)
