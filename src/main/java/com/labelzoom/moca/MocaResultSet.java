@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 
-class MocaResultSet extends AResultSet
+class MocaResultSet extends AbstractResultSet
 {
     private boolean isClosed = false;
     private final MocaResultSetMetaData metadata;

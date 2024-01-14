@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-class MocaResultSetMetaData extends AResultSetMetaData
+class MocaResultSetMetaData extends AbstractResultSetMetaData
 {
     private final ArrayList<MocaMetaData> columns = new ArrayList<>();
     private final Map<String, Integer> columnIndex = new TreeMap<>();

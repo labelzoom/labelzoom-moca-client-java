@@ -109,7 +109,7 @@ public class LegacyMocaConnectionTest
             res.next();
             System.out.println("Message: " + res.getString("message"));
         }
-        catch (final SQLException | IOException e)
+        catch (final SQLException e)
         {
             e.printStackTrace();
         }

@@ -47,10 +47,4 @@ public class LegacyMocaConnection extends MocaConnection
     {
         return MocaRequestBuilder.legacy();
     }
-
-    @Override
-    public void close() throws IOException
-    {
-        this.logout();
-    }
 }

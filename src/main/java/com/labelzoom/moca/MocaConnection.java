@@ -3,13 +3,15 @@ package com.labelzoom.moca;
 import com.labelzoom.moca.exceptions.MocaException;
 
 import java.io.Closeable;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class MocaConnection implements Closeable
+public abstract class MocaConnection extends AbstractConnection
 {
+    protected boolean isClosed = false;
     protected final Map<String, String> environment = new TreeMap<>();
     protected String sessionKey;
 
@@ -19,9 +21,13 @@ public abstract class MocaConnection implements Closeable
 
     public ResultSet execute(final String command) throws MocaException
     {
+        if (isClosed)
+        {
+            throw new IllegalStateException("Connection is closed");
+        }
         if (sessionKey == null)
         {
-            throw new RuntimeException("Not logged in");
+            throw new IllegalStateException("Not logged in");
         }
 
         // TODO: Expand on environment
@@ -33,6 +39,10 @@ public abstract class MocaConnection implements Closeable
 
     protected void login(final String userId, final String password) throws MocaException
     {
+        if (isClosed)
+        {
+            throw new IllegalStateException("Connection is closed");
+        }
         final Map<String, String> context = new TreeMap<>();
         context.put("usr_id", userId);
         context.put("usr_pswd", password);
@@ -63,6 +73,10 @@ public abstract class MocaConnection implements Closeable
      */
     protected boolean logout()
     {
+        if (isClosed)
+        {
+            throw new IllegalStateException("Connection is closed");
+        }
         try
         {
             execute("logout user");
@@ -75,6 +89,16 @@ public abstract class MocaConnection implements Closeable
         finally
         {
             this.sessionKey = null;
+        }
+    }
+
+    @Override
+    public void close()
+    {
+        if (!isClosed)
+        {
+            this.logout();
+            isClosed = true;
         }
     }
 }

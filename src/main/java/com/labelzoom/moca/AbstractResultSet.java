@@ -22,7 +22,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Map;
 
-abstract class AResultSet implements ResultSet
+abstract class AbstractResultSet implements ResultSet
 {
     @Override
     public boolean isWrapperFor(Class<?> arg0) throws SQLException {

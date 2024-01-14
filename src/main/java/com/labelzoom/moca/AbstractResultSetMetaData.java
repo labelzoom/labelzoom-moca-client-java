@@ -3,7 +3,7 @@ package com.labelzoom.moca;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-abstract class AResultSetMetaData implements ResultSetMetaData {
+abstract class AbstractResultSetMetaData implements ResultSetMetaData {
 
     @Override
     public boolean isWrapperFor(Class<?> iface) throws SQLException {

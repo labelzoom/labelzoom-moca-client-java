@@ -67,10 +67,4 @@ public class HttpMocaConnection extends MocaConnection
     {
         return MocaRequestBuilder.http();
     }
-
-    @Override
-    public void close() throws IOException
-    {
-        this.logout();
-    }
 }
