@@ -29,7 +29,7 @@ repositories {
 Add the dependency to your `implementation` dependencies:
 ```groovy
 dependencies {
-    implementation 'com.labelzoom:labelzoom-moca-client-java:1.0.1'
+    implementation 'com.labelzoom:labelzoom-moca-client-java:1.0.2'
 }
 ```
 
