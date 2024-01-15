@@ -17,6 +17,10 @@ repositories {
     mavenCentral() // You probably already have this
     maven {
         url = uri('https://maven.pkg.github.com/labelzoom/labelzoom-moca-client-java')
+        credentials {
+            username = project.findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR') // your GitHub username goes here
+            password = project.findProperty('gpr.key') ?: System.getenv('GITHUB_TOKEN') // your GitHub PAT (Personal Access Token) goes here
+        }
     }
 }
 ```
