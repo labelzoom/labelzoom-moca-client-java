@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'jacoco'
 }
 
 group = 'com.labelzoom'
@@ -41,5 +42,16 @@ publishing {
                 password = System.getenv('GITHUB_TOKEN')
             }
         }
+    }
+}
+
+// Code coverage
+test {
+    finalizedBy jacocoTestReport // generate the report after tests run
+}
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = false
     }
 }
