@@ -16,6 +16,8 @@ public class MocaResultSetTest extends MocaTester
     {
         try (final ResultSet res = conn.execute("publish data where a = 1 and b = 2 & publish data where a = 3 and b = 4"))
         {
+            assertFalse(res.previous());
+
             // rowNum == -1
             assertTrue(res.isBeforeFirst());
             assertFalse(res.isFirst());
