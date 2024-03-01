@@ -42,6 +42,13 @@ public class MocaResultSetTest extends MocaTester
             assertFalse(res.isFirst());
             assertFalse(res.isLast());
             assertTrue(res.isAfterLast());
+
+            // rowNum == 1
+            assertTrue(res.previous());
+            assertFalse(res.isBeforeFirst());
+            assertFalse(res.isFirst());
+            assertTrue(res.isLast());
+            assertFalse(res.isAfterLast());
         }
     }
 
@@ -71,6 +78,8 @@ public class MocaResultSetTest extends MocaTester
 
             assertThrows(IndexOutOfBoundsException.class, () -> res.getMetaData().getColumnType(4));
             assertThrows(IndexOutOfBoundsException.class, () -> res.findColumn("invalidcol"));
+            assertThrows(IndexOutOfBoundsException.class, () -> res.getString(-1));
+            assertThrows(IndexOutOfBoundsException.class, () -> res.getString(4));
         }
     }
 }
