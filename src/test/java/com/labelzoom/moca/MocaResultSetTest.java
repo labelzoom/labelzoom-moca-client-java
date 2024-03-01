@@ -68,6 +68,9 @@ public class MocaResultSetTest extends MocaTester
             assertEquals((float) 819233.389901782, res.getFloat("floatcol"));
             assertEquals((double) 819233.389901782, res.getDouble("floatcol"));
             assertEquals(Types.DOUBLE, res.getMetaData().getColumnType(3));
+
+            assertThrows(IndexOutOfBoundsException.class, () -> res.getMetaData().getColumnType(4));
+            assertThrows(IndexOutOfBoundsException.class, () -> res.findColumn("invalidcol"));
         }
     }
 }
