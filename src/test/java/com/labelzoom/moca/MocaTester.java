@@ -4,6 +4,8 @@ import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 public abstract class MocaTester
 {
     private final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
@@ -15,6 +17,9 @@ public abstract class MocaTester
     @BeforeEach
     protected void setUp() throws Exception
     {
+        assertNotNull(url);
+        assertNotNull(userId);
+        assertNotNull(password);
         conn = new HttpMocaConnection(url, userId, password);
     }
 

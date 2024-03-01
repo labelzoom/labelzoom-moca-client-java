@@ -2,6 +2,7 @@ package com.labelzoom.moca;
 
 import com.labelzoom.moca.exceptions.MocaException;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -23,6 +24,14 @@ public class HttpMocaConnectionTest
     private final String url = dotenv.get("MOCA_URL");
     private final String userId = dotenv.get("MOCA_USER");
     private final String password = dotenv.get("MOCA_PASS");
+
+    @BeforeEach
+    public void testEnvironmentSetup()
+    {
+        assertNotNull(url);
+        assertNotNull(userId);
+        assertNotNull(password);
+    }
 
     @Test
     public void testHttpMocaConnection() throws MocaException, IOException, SQLException

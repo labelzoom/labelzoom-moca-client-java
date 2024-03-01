@@ -2,6 +2,7 @@ package com.labelzoom.moca;
 
 import com.labelzoom.moca.exceptions.MocaException;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,14 @@ public class LegacyMocaConnectionTest
     private final int port = Integer.parseInt(dotenv.get("MOCA_PORT"));
     private final String userId = dotenv.get("MOCA_USER");
     private final String password = dotenv.get("MOCA_PASS");
+
+    @BeforeEach
+    public void testEnvironmentSetup()
+    {
+        assertNotNull(host);
+        assertNotNull(userId);
+        assertNotNull(password);
+    }
 
     @Test
     public void testReadersAndWriters() throws IOException, InterruptedException
