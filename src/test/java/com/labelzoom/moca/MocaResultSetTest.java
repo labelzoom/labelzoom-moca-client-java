@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,11 +55,19 @@ public class MocaResultSetTest extends MocaTester
                 "   and floatcol = 819233.389901782"))
         {
             assertTrue(res.next());
+
             assertEquals(82332, res.getInt("intcol"));
+            assertEquals(Types.INTEGER, res.getMetaData().getColumnType(0));
+
             assertEquals("IOJWExriojomwe", res.getString("strcol"));
+            assertEquals(Types.VARCHAR, res.getMetaData().getColumnType(1));
+
             assertTrue(res.getBoolean("boolcol"));
+            assertEquals(Types.BOOLEAN, res.getMetaData().getColumnType(2));
+
             assertEquals((float) 819233.389901782, res.getFloat("floatcol"));
             assertEquals((double) 819233.389901782, res.getDouble("floatcol"));
+            assertEquals(Types.DOUBLE, res.getMetaData().getColumnType(3));
         }
     }
 }
