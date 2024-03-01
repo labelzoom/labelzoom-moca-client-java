@@ -120,7 +120,7 @@ publish data
             }
             for (int i = 0; i < columns.length; i += 5)
             {
-                System.out.println(String.format("%s\t%s\t%s\t%s\t%s\t%s", dataTypes.charAt(i / 5), columns[i + 0], columns[i + 1], columns[i + 2], columns[i + 3], columns[i + 4]));
+                System.out.printf("%s\t%s\t%s\t%s\t%s\t%s%n", dataTypes.charAt(i / 5), columns[i + 0], columns[i + 1], columns[i + 2], columns[i + 3], columns[i + 4]);
             }
         }
         throw new UnsupportedOperationException();
