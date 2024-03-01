@@ -4,6 +4,7 @@
 
 [![Build Status](https://github.com/labelzoom/labelzoom-moca-client-java/actions/workflows/gradle-build.yml/badge.svg?branch=main)](https://github.com/labelzoom/labelzoom-moca-client-java/actions?query=branch%3Amain)
 [![Release](https://img.shields.io/github/release/labelzoom/labelzoom-moca-client-java.svg?style=flat-square)](https://github.com/labelzoom/labelzoom-moca-client-java/releases)
+[![codecov](https://codecov.io/gh/labelzoom/labelzoom-moca-client-java/graph/badge.svg?token=R1Z1Q2W4EF)](https://codecov.io/gh/labelzoom/labelzoom-moca-client-java)
 
 MOCA client for Java, sponsored by [LabelZoom](https://www.labelzoom.net).
 
