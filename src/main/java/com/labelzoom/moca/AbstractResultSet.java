@@ -1,5 +1,7 @@
 package com.labelzoom.moca;
 
+import com.labelzoom.util.Generated;
+
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
@@ -22,6 +24,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Map;
 
+@Generated
 abstract class AbstractResultSet implements ResultSet
 {
     @Override
