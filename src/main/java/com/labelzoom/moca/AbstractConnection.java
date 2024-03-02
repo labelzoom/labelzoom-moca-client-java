@@ -1,10 +1,13 @@
 package com.labelzoom.moca;
 
+import com.labelzoom.util.Generated;
+
 import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+@Generated
 public abstract class AbstractConnection implements Connection
 {
     @Override

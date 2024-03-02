@@ -1,6 +1,7 @@
 package com.labelzoom.moca;
 
 import com.labelzoom.moca.exceptions.MocaException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -8,6 +9,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class HttpMocaConnection extends MocaConnection
 {
     private static final int TIMEOUT = 5000;
@@ -57,7 +59,7 @@ public class HttpMocaConnection extends MocaConnection
         }
         catch (final IOException e)
         {
-            e.printStackTrace();
+            log.error("error sending MOCA via HTTP", e);
         }
         return null;
     }

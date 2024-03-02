@@ -1,8 +1,11 @@
 package com.labelzoom.moca;
 
+import com.labelzoom.util.Generated;
+
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
+@Generated
 abstract class AbstractResultSetMetaData implements ResultSetMetaData {
 
     @Override

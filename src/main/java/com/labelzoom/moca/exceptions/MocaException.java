@@ -1,10 +1,15 @@
 package com.labelzoom.moca.exceptions;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.sql.ResultSet;
 
 public class MocaException extends Exception
 {
     private final int code;
+
+    @Getter @Setter
     private ResultSet results;
 
     public MocaException(final String message, final int code)
@@ -15,6 +20,4 @@ public class MocaException extends Exception
 
     public int getErrorCode() { return code; }
 
-    public ResultSet getResults() { return results; }
-    public void setResults(final ResultSet results) { this.results = results; }
 }

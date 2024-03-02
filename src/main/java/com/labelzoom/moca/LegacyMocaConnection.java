@@ -1,11 +1,13 @@
 package com.labelzoom.moca;
 
 import com.labelzoom.moca.exceptions.MocaException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 public class LegacyMocaConnection extends MocaConnection
 {
     private final String host;
@@ -37,7 +39,7 @@ public class LegacyMocaConnection extends MocaConnection
         }
         catch (final IOException | InterruptedException ex)
         {
-            ex.printStackTrace();
+            log.error("error sending MOCA via socket", ex);
         }
         return null;
     }
