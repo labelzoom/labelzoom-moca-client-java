@@ -14,6 +14,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,9 +22,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HttpMocaConnectionTest
 {
     private final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
-    private final String url = dotenv.get("MOCA_URL");
-    private final String userId = dotenv.get("MOCA_USER");
-    private final String password = dotenv.get("MOCA_PASS");
+    private final String url = Optional.ofNullable(dotenv.get("MOCA_URL")).orElse(System.getenv("MOCA_URL"));
+    private final String userId = Optional.ofNullable(dotenv.get("MOCA_USER")).orElse(System.getenv("MOCA_USER"));
+    private final String password = Optional.ofNullable(dotenv.get("MOCA_PASS")).orElse(System.getenv("MOCA_PASS"));
 
     @BeforeEach
     public void testEnvironmentSetup()
