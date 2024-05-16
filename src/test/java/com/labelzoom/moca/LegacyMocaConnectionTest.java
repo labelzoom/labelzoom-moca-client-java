@@ -1,7 +1,6 @@
 package com.labelzoom.moca;
 
 import com.labelzoom.moca.exceptions.MocaException;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -29,11 +28,10 @@ V104^210^2^^^202^^^~0~~0~~-1^USR_ID=RFAUST:SESSION_KEY=;uid=RFAUST|sid=314d9b70-
 @Disabled
 public class LegacyMocaConnectionTest
 {
-    private final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
-    private final String host = dotenv.get("MOCA_HOST");
-    private final int port = Integer.parseInt(dotenv.get("MOCA_PORT"));
-    private final String userId = dotenv.get("MOCA_USER");
-    private final String password = dotenv.get("MOCA_PASS");
+    private final String host = System.getenv("MOCA_HOST");
+    private final int port = Integer.parseInt(System.getenv("MOCA_PORT"));
+    private final String userId = System.getenv("MOCA_USER");
+    private final String password = System.getenv("MOCA_PASS");
 
     @BeforeEach
     public void testEnvironmentSetup()
