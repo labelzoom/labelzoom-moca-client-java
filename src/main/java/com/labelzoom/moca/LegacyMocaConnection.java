@@ -34,7 +34,7 @@ public class LegacyMocaConnection extends MocaConnection
 
             final byte[] data = new byte[socket.getInputStream().available()];
             final int bytes = socket.getInputStream().read(data, 0, data.length);
-            final String responseData = new String(data, 0 , bytes, "ASCII");
+            final String responseData = new String(data, 0 , bytes, StandardCharsets.US_ASCII);
             return MocaResponse.fromLegacy(responseData);
         }
         catch (final IOException | InterruptedException ex)

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HttpMocaConnectionTest
+class HttpMocaConnectionTest
 {
     private final String url = System.getenv("MOCA_URL");
     private final String userId = System.getenv("MOCA_USER");
@@ -32,7 +32,7 @@ public class HttpMocaConnectionTest
     }
 
     @Test
-    public void testHttpMocaConnection() throws MocaException, IOException, SQLException
+    void testHttpMocaConnection() throws MocaException, SQLException
     {
         try (final MocaConnection conn = new HttpMocaConnection(url, userId, password);
              final ResultSet res = conn.execute("publish data where message = 'My name is Rob'"))
@@ -43,7 +43,7 @@ public class HttpMocaConnectionTest
     }
 
     @Test
-    public void testMultipleRows() throws MocaException, IOException, SQLException
+    void testMultipleRows() throws MocaException, SQLException
     {
         try (final MocaConnection conn = new HttpMocaConnection(url, userId, password);
              final ResultSet res = conn.execute("publish data where a = 1 and b = 2 & publish data where a = 3 and b = 4"))
@@ -56,7 +56,7 @@ public class HttpMocaConnectionTest
     }
 
     @Test
-    public void testRawHttp() throws IOException
+    void testRawHttp() throws IOException
     {
         final int TIMEOUT = 5000;
         final String command = "<moca-request><query>get encryption information</query></moca-request>";

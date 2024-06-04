@@ -2,8 +2,6 @@ package com.labelzoom.moca;
 
 import com.labelzoom.moca.exceptions.MocaException;
 
-import java.io.Closeable;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;

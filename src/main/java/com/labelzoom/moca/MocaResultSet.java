@@ -17,7 +17,7 @@ class MocaResultSet extends AbstractResultSet
 
     private int rowNum = -1;
 
-    public MocaResultSet(final Node mocaResults) throws SQLException
+    public MocaResultSet(final Node mocaResults)
     {
         final Node metadata = ((Element)mocaResults).getElementsByTagName("metadata").item(0);
         this.metadata = new MocaResultSetMetaData(metadata);

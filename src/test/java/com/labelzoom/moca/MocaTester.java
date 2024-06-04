@@ -22,7 +22,7 @@ public abstract class MocaTester
     }
 
     @AfterEach
-    protected void tearDown() throws Exception
+    protected void tearDown()
     {
         conn.close();
     }

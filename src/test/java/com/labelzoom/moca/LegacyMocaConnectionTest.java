@@ -26,7 +26,7 @@ V104^210^2^^^202^^^~0~~0~~-1^USR_ID=RFAUST:SESSION_KEY=;uid=RFAUST|sid=314d9b70-
  * TODO: LegacyMocaConnection needs some work
  */
 @Disabled
-public class LegacyMocaConnectionTest
+class LegacyMocaConnectionTest
 {
     private final String host = System.getenv("MOCA_HOST");
     private final int port = Integer.parseInt(System.getenv("MOCA_PORT"));
@@ -42,7 +42,7 @@ public class LegacyMocaConnectionTest
     }
 
     @Test
-    public void testReadersAndWriters() throws IOException, InterruptedException
+    void testReadersAndWriters() throws IOException
     {
         try (final Socket socket = new Socket(host, port))
         {
@@ -68,7 +68,7 @@ public class LegacyMocaConnectionTest
     }
 
     @Test
-    public void testRawV103() throws IOException, InterruptedException
+    void testRawV103() throws IOException, InterruptedException
     {
         try (final Socket socket = new Socket(host, port))
         {
@@ -88,7 +88,7 @@ public class LegacyMocaConnectionTest
     }
 
     @Test
-    public void testRawV104() throws IOException, InterruptedException
+    void testRawV104() throws IOException, InterruptedException
     {
         try (final Socket socket = new Socket(host, port))
         {
@@ -108,7 +108,7 @@ public class LegacyMocaConnectionTest
     }
 
     @Test
-    public void testLegacyMocaConnection() throws MocaException
+    void testLegacyMocaConnection() throws MocaException
     {
         try (final MocaConnection conn = new LegacyMocaConnection(host, port, userId, password);
              final ResultSet res = conn.execute("create policy where polcod = 'LEGACY-MOCA-CLIENT' and polvar = 'LEGACY-MOCA-CLIENT' and polval = 'LEGACY-MOCA-CLIENT' and rtstr1 = 'success'"))

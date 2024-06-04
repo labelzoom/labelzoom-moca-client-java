@@ -9,10 +9,10 @@ import java.sql.Types;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MocaResultSetTest extends MocaTester
+class MocaResultSetTest extends MocaTester
 {
     @Test
-    public void testIteration() throws MocaException, SQLException
+    void testIteration() throws MocaException, SQLException
     {
         try (final ResultSet res = conn.execute("publish data where a = 1 and b = 2 & publish data where a = 3 and b = 4"))
         {
@@ -55,7 +55,7 @@ public class MocaResultSetTest extends MocaTester
     }
 
     @Test
-    public void testDataTypes() throws MocaException, SQLException
+    void testDataTypes() throws MocaException, SQLException
     {
         try (final ResultSet res = conn.execute("publish data" +
                 " where intcol = 82332" +

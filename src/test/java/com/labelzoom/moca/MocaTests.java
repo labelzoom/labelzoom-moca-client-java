@@ -8,10 +8,10 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MocaTests extends MocaTester
+class MocaTests extends MocaTester
 {
     @Test
-    public void testSyntaxError()
+    void testSyntaxError()
     {
         final MocaException ex = assertThrows(MocaException.class, () -> conn.execute("publish data a = 1"));
         System.err.println(ex.getMessage());
@@ -19,7 +19,7 @@ public class MocaTests extends MocaTester
     }
 
     @Test
-    public void testCommandNotFound()
+    void testCommandNotFound()
     {
         final MocaException ex = assertThrows(MocaException.class, () -> conn.execute("this command doesnt exist"));
         System.err.println(ex.getMessage());
@@ -27,7 +27,7 @@ public class MocaTests extends MocaTester
     }
 
     @Test
-    public void testNoRowsAffected() throws SQLException
+    void testNoRowsAffected() throws SQLException
     {
         final MocaException ex = assertThrows(MocaException.class, () -> conn.execute("[select polcod, polvar, polval from poldat where 1 = 2]"));
         System.err.println(ex.getMessage());
@@ -40,7 +40,7 @@ public class MocaTests extends MocaTester
     }
 
     @Test
-    public void testInvalidColumn() throws SQLException
+    void testInvalidColumn()
     {
         final MocaException ex = assertThrows(MocaException.class, () -> conn.execute("[select qw9io0ejoower from poldat where 1 = 2]"));
         System.err.println(ex.getMessage());

@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 
 public class MocaExceptionFactory
 {
+    private MocaExceptionFactory() {}
+
     public static MocaException produce(final String message, final int code) { return produce(message, code, null); }
     public static MocaException produce(final String message, final int code, final ResultSet results)
     {
