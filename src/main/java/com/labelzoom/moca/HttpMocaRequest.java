@@ -17,10 +17,8 @@ import java.util.Map;
 
 class HttpMocaRequest extends MocaRequest
 {
-    public HttpMocaRequest(final String command)
-    {
-        super(command);
-    }
+    public HttpMocaRequest(final String command) { super(command); }
+    public HttpMocaRequest(final String command, final boolean autoCommit) { super(command, autoCommit); }
 
     @Override
     public String toString()
@@ -33,7 +31,7 @@ class HttpMocaRequest extends MocaRequest
 
             // Root element
             final Element root = document.createElement("moca-request");
-            root.setAttribute("autocommit", "True");
+            root.setAttribute("autocommit", autoCommit ? "True" : "False");
             document.appendChild(root);
 
             // Environment node

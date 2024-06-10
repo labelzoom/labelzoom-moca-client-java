@@ -67,6 +67,6 @@ public class HttpMocaConnection extends MocaConnection
     @Override
     protected MocaRequestBuilder getRequestBuilder()
     {
-        return MocaRequestBuilder.http();
+        return MocaRequestBuilder.http().withAutoCommit(getAutoCommit());
     }
 }
