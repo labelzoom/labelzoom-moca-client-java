@@ -2,7 +2,7 @@ package com.labelzoom.moca;
 
 import org.junit.jupiter.api.Test;
 
-class MocaRequestTest
+class MocaRequestTests
 {
     @Test
     void testMocaResultXml()

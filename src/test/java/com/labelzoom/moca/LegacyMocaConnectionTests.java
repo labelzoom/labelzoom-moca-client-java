@@ -26,7 +26,7 @@ V104^210^2^^^202^^^~0~~0~~-1^USR_ID=RFAUST:SESSION_KEY=;uid=RFAUST|sid=314d9b70-
  * TODO: LegacyMocaConnection needs some work
  */
 @Disabled
-class LegacyMocaConnectionTest
+class LegacyMocaConnectionTests
 {
     private final String host = System.getenv("MOCA_HOST");
     private final int port = Integer.parseInt(System.getenv("MOCA_PORT"));

@@ -12,6 +12,7 @@ public abstract class MocaConnection extends AbstractConnection
     protected boolean isClosed = false;
     protected final Map<String, String> environment = new TreeMap<>();
     protected String sessionKey;
+    private boolean hasUncommittedTransactions = false;
 
     protected abstract MocaResponse send(final String command) throws MocaException;
 
@@ -32,7 +33,9 @@ public abstract class MocaConnection extends AbstractConnection
         final Map<String, String> env = new TreeMap<>();
         env.put("SESSION_KEY", sessionKey);
         final MocaRequest request = getRequestBuilder().command(command).environment(env);
-        return send(request.toString()).getResults();
+        final ResultSet result = send(request.toString()).getResults();
+        if (!getAutoCommit()) hasUncommittedTransactions = true;
+        return result;
     }
 
     protected void login(final String userId, final String password) throws MocaException
@@ -77,10 +80,10 @@ public abstract class MocaConnection extends AbstractConnection
         }
         try
         {
-            execute("logout user");
+            execute("logout user").close();
             return true;
         }
-        catch (final MocaException ex)
+        catch (final MocaException|SQLException ex)
         {
             return false;
         }
@@ -91,11 +94,42 @@ public abstract class MocaConnection extends AbstractConnection
     }
 
     @Override
+    public void commit()
+    {
+        if (hasUncommittedTransactions)
+        {
+            try
+            {
+                final ResultSet result = execute("commit");
+                result.close();
+            }
+            catch (final MocaException|SQLException ignored) {}
+            hasUncommittedTransactions = false;
+        }
+    }
+
+    @Override
+    public void rollback()
+    {
+        if (hasUncommittedTransactions)
+        {
+            try
+            {
+                final ResultSet result = execute("rollback");
+                result.close();
+            }
+            catch (final MocaException|SQLException ignored) {}
+            hasUncommittedTransactions = false;
+        }
+    }
+
+    @Override
     public void close()
     {
         if (!isClosed)
         {
-            this.logout();
+            if (!getAutoCommit() && hasUncommittedTransactions) rollback();
+            logout();
             isClosed = true;
         }
     }

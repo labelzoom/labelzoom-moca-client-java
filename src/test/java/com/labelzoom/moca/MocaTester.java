@@ -3,6 +3,8 @@ package com.labelzoom.moca;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public abstract class MocaTester
@@ -22,7 +24,7 @@ public abstract class MocaTester
     }
 
     @AfterEach
-    protected void tearDown()
+    protected void tearDown() throws SQLException
     {
         conn.close();
     }

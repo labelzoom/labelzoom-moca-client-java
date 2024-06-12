@@ -9,7 +9,7 @@ import java.sql.Types;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MocaResultSetTest extends MocaTester
+class MocaResultSetTests extends MocaTester
 {
     @Test
     void testIteration() throws MocaException, SQLException

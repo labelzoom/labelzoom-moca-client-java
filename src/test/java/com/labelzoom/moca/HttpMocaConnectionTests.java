@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HttpMocaConnectionTest
+class HttpMocaConnectionTests
 {
     private final String url = System.getenv("MOCA_URL");
     private final String userId = System.getenv("MOCA_USER");

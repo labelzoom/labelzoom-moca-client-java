@@ -10,7 +10,7 @@ import java.util.concurrent.Executor;
 @Generated
 public abstract class AbstractConnection implements Connection
 {
-    private boolean autoCommit = false;
+    private boolean autoCommit = true;
 
     @Override
     public Statement createStatement() throws SQLException
