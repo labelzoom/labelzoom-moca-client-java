@@ -34,11 +34,11 @@ jobs:
       with:
         arguments: build
       env:
-        MOCA_URL: ${{ secrets.MOCA_URL }}
-        MOCA_HOST: ${{ secrets.MOCA_HOST }}
-        MOCA_PORT: ${{ secrets.MOCA_PORT }}
-        MOCA_USER: ${{ secrets.MOCA_USER }}
-        MOCA_PASS: ${{ secrets.MOCA_PASS }}
+        MOCA_URL: ${{ vars.MOCA_URL }}
+        MOCA_HOST: ${{ vars.MOCA_HOST }}
+        MOCA_PORT: ${{ vars.MOCA_PORT }}
+        MOCA_USER: ${{ vars.MOCA_USER }}
+        MOCA_PASS: ${{ vars.MOCA_PASS }}
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
