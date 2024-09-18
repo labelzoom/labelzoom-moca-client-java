@@ -29,11 +29,12 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-        
+
+    - name: Set up Gradle
+      uses: gradle/actions/setup-gradle@v4
+
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-      with:
-        arguments: build
+      run: ./gradlew build
       env:
         MOCA_URL: ${{ vars.MOCA_URL }}
         MOCA_HOST: ${{ vars.MOCA_HOST }}
