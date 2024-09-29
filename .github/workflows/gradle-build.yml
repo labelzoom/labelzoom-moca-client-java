@@ -41,6 +41,12 @@ jobs:
         MOCA_PORT: ${{ vars.MOCA_PORT }}
         MOCA_USER: ${{ vars.MOCA_USER }}
         MOCA_PASS: ${{ vars.MOCA_PASS }}
+
+    - uses: actions/upload-artifact@v4  # upload test results
+      if: success() || failure()        # run this step even if previous step failed
+      with:
+        name: test-results
+        path: jest-junit.xml
         
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1
