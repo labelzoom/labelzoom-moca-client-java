@@ -18,9 +18,8 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    environment: 'BY WMS 2020.1.1 QA'
     steps:
     - uses: actions/checkout@v3
 
