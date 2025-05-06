@@ -14,13 +14,21 @@ on:
 jobs:
   build:
 
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
 
     steps:
     - uses: actions/checkout@v3
+
+    - uses: Voodoo262/cloudflare-access-proxy@v0.0.1-beta.11
+      with:
+        cf-access-client-id: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+        cf-access-client-secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        target-url: ${{ secrets.CF_ACCESS_TARGET_URL }}
+        listen-port: 4600
+        
     - name: Set up JDK 8
       uses: actions/setup-java@v3
       with:

@@ -48,7 +48,7 @@ public class HttpMocaConnection extends MocaConnection
 
                 try (final BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream())))
                 {
-                    final String responseBody = in.lines().collect(Collectors.joining());
+                    final String responseBody = in.lines().collect(Collectors.joining("\n"));
                     return MocaResponse.fromXml(responseBody);
                 }
             }
