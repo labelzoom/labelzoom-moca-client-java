@@ -42,7 +42,7 @@ jobs:
 
     - name: Build with Gradle
       env:
-        MOCA_URL: ${{ secrets.MOCA_URL }}
+        MOCA_URL: 'http://localhost:4600/service'
         MOCA_HOST: ${{ secrets.MOCA_HOST }}
         MOCA_PORT: ${{ secrets.MOCA_PORT }}
         MOCA_USER: ${{ secrets.MOCA_USER }}
