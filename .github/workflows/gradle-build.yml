@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: Voodoo262/cloudflare-access-proxy@v0
+    - uses: Voodoo262/cloudflare-access-proxy
       with:
         cf-access-client-id: ${{ secrets.CF_ACCESS_CLIENT_ID }}
         cf-access-client-secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
