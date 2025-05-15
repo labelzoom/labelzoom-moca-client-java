@@ -44,8 +44,8 @@ jobs:
     - name: Build with Gradle
       env:
         MOCA_URL: 'http://localhost:${{ env.CF_PROXY_PORT }}/service'
-        MOCA_HOST: ${{ vars.MOCA_HOST }}
-        MOCA_PORT: ${{ vars.MOCA_PORT }}
+        MOCA_HOST: ${{ vars.MOCA_HOST }} # Not used yet
+        MOCA_PORT: ${{ vars.MOCA_PORT }} # Not used yet
         MOCA_USER: ${{ secrets.MOCA_USER }}
         MOCA_PASS: ${{ secrets.MOCA_PASS }}
       run: ./gradlew build
