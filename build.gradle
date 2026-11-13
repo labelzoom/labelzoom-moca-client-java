@@ -14,6 +14,12 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+// Gradle 9 needs JDK 17+ to run, but the library still ships for Java 8 consumers.
+// --release 8 checks the code against the Java 8 API, not just the bytecode level.
+tasks.withType(JavaCompile).configureEach {
+    options.release = 8
+}
+
 repositories {
     mavenCentral()
 }
